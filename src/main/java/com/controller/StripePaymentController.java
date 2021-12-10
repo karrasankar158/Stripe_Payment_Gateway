@@ -108,3 +108,21 @@ public class StripePaymentController {
 		return "update-customer";
 	}
 }
+
+/**
+ *  Add card
+After creating a user we have required to add a card fro the customer for the charge.
+ 
+Map<String, Object> map = new HashMap<>();
+map.put("number", cardDto.getNumber());
+map.put("exp_month", cardDto.getExp_month());
+map.put("exp_year", cardDto.getExp_year());
+map.put("cvc", cardDto.getCvv());
+Map<String, Object> cardMap = new HashMap<>();
+cardMap.put("card", map);
+Token token = Token.create(cardMap);
+Customer cust = getCustomer(cardDto.getUserid());
+Map<String, Object> source = new HashMap<>();
+source.put("source", token.getId());
+cust.getSources().create(source);
+ */
